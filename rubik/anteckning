@@ -1,0 +1,4 @@
+Center: x,y
+Down: x,y+40
+Right: x+30,y-10
+Left: x-30,y-10
