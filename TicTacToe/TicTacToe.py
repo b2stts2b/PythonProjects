@@ -79,3 +79,4 @@ while run:
 	board.draw_board()
 
 	pygame.display.update()
+
