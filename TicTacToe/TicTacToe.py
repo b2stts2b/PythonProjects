@@ -7,6 +7,7 @@ class Board:
 
 		self.player_one = True
 		self.is_click = False
+		self.alive = True
 
 	def create_board(self):
 		board = []
@@ -37,20 +38,22 @@ class Board:
 		if x_i in [0,1,2] and y_i in [0,1,2]:
 			if self.board[y_i][x_i] == "":
 				self.board[y_i][x_i] = "X" if self.player_one else "O"
-				self.player_one = not self.player_one
-				self.check_win()
+				return True
 
 	def check_win(self):
 		if self.board[0][0] == self.board[1][1] and self.board[1][1] == self.board[2][2] and self.board[0][0] != "":
-				print("You won!")
+				return True
 		if self.board[2][0] == self.board[1][1] and self.board[1][1] == self.board[0][2] and self.board[2][0] != "":
-				print("You won!")
+				return True
 		for r,val in enumerate(self.board):
 			if len(set(val)) == 1 and val[0] != "":
-				print("You won!")
+				return True
 			if self.board[0][r] == self.board[1][r] and self.board[2][r] == self.board[1][r] and self.board[0][r] != "":
-				print("You won!")
+				return True
+			return False
 
+	def change_player(self):
+		self.player_one = not self.player_one
 
 s_w, s_h = 600, 600
 Screen = pygame.display.set_mode((s_w, s_h))
@@ -67,13 +70,19 @@ while run:
 
 
 	m = pygame.mouse.get_pressed()
-	if m[0] and not board.is_click:
-		#we clicked
-		board.is_click = True
-		board.board_clicked(pygame.mouse.get_pos())
-	elif not m[0] and board.is_click:
-		#we stop click
-		board.is_click = False
+	if board.alive:
+		if m[0] and not board.is_click:
+			#we clicked
+			board.is_click = True
+			if board.board_clicked(pygame.mouse.get_pos()):
+				board.change_player()
+		elif not m[0] and board.is_click:
+			#we stop click
+			board.is_click = False
+	if board.alive and board.check_win():
+		print("Winner!")
+		board.alive = False
+
 
 	Screen.fill((150, 150, 150))
 	board.draw_board()

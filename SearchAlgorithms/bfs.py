@@ -1,8 +1,5 @@
 import queue, os, pygame, ctypes
 
-os.environ["SDL_VIDEO_WINDOW_POS"] = "%d,%d" % (0, 0)
-user32 = ctypes.windll.user32
-screen_size = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
 screen_size = [600, 400]
 
 #Classes

@@ -1,8 +1,5 @@
 import queue, os, pygame, ctypes, random
 from time import time
-os.environ["SDL_VIDEO_WINDOW_POS"] = "%d,%d" % (100, 100)
-user32 = ctypes.windll.user32
-screen_size = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
 screen_size = [1300, 700]
 
 #Classes

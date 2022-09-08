@@ -1,9 +1,5 @@
 import pygame, ctypes, os
 
-os.environ["SDL_VIDEO_WINDOW_POS"] = "%d,%d" % (0, 0)
-user32 = ctypes.windll.user32
-screensize = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1) 
-
 #Classes
 class Node:
 	def __init__(self, x, y, w, h, row, col):
@@ -56,8 +52,8 @@ def create_nodes():
 
 
 pygame.init()
-screen_width = screensize[0]-screensize[0]%20
-screen_height = screensize[1]-screensize[1]%20
+screen_width = 1000
+screen_height = 500
 node_size = 20
 has_started = False
 Screen = pygame.display.set_mode((screen_width, screen_height))

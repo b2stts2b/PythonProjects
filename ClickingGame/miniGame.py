@@ -10,9 +10,7 @@ from time import time
 """
 
 #General Things
-os.environ["SDL_VIDEO_WINDOW_POS"] = "%d,%d" % (0, 0)
-user32 = ctypes.windll.user32
-screensize = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1) 
+screensize = [800,500] 
 screen_width, screen_height = screensize
 FRAMERATE = 60
 LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
